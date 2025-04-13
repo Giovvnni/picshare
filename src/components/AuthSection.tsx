@@ -13,7 +13,7 @@ export default function AuthSection({
   setAlbumNameDisplay,
 }: any) {
   const createAlbum = async () => {
-    const res = await axios.post("http://localhost:8000/albums/create", {
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/albums/create`, {
       album_name: albumName,
     });
     const { album } = res.data;
@@ -30,7 +30,7 @@ export default function AuthSection({
   const accessAlbum = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/albums/verify_key?key=${accessKey}`
+        `${process.env.NEXT_PUBLIC_API_URL}/albums/verify_key?key=${accessKey}`
       );
 
       localStorage.setItem("album_id", res.data.album_id);

@@ -23,7 +23,7 @@ export default function ImageGrid({ images }: { images: string[] }) {
           className="relative aspect-[4/3] rounded overflow-hidden shadow w-full"
         >
           <Image
-            src={`http://localhost:8000/static/${filename}`}
+            src={`${process.env.NEXT_PUBLIC_API_URL}/static/${filename}`}
             alt={`Imagen ${index + 1}`}
             fill
             className="object-cover"

@@ -31,7 +31,7 @@ export default function UploadControls({ session, setRefreshTrigger }: any) {
         formData.append("files", blob);
 
         await axios.post(
-          `http://localhost:8000/images/upload/${session.albumId}?access_key=${session.masterKey}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/images/upload/${session.albumId}?access_key=${session.masterKey}`,
           formData,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
@@ -85,7 +85,7 @@ export default function UploadControls({ session, setRefreshTrigger }: any) {
           }
 
           await axios.post(
-            `http://localhost:8000/images/upload/${session.albumId}?access_key=${session.masterKey}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/images/upload/${session.albumId}?access_key=${session.masterKey}`,
             formData,
             { headers: { "Content-Type": "multipart/form-data" } }
           );

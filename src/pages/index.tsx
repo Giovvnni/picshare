@@ -33,7 +33,7 @@ export default function HomePage() {
     if (albumId && (masterKey || readonlyKey)) {
       const key = masterKey ?? readonlyKey;
       axios
-        .get(`http://localhost:8000/images/${albumId}?access_key=${key}`)
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/images/${albumId}?access_key=${key}`)
         .then((res) => {
           setImages(res.data.images.map((img: any) => img.filename));
         })
@@ -45,7 +45,7 @@ export default function HomePage() {
     const key = session.masterKey ?? session.readonlyKey;
     if (session.albumId && key) {
       axios
-        .get(`http://localhost:8000/images/${session.albumId}?access_key=${key}`)
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/images/${session.albumId}?access_key=${key}`)
         .then((res) => {
           setImages(res.data.images.map((img: any) => img.filename));
         })
