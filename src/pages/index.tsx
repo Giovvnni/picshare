@@ -52,6 +52,10 @@ export default function HomePage() {
         .catch(() => setImages([]));
     }
   }, [session, refreshTrigger]);
+  
+  useEffect(() => {
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+  }, []);
 
   return (
     <div
