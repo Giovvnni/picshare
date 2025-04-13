@@ -17,7 +17,6 @@ const nextConfig: NextConfig = {
   experimental: {
     allowedDevOrigins: ['http://192.168.1.10'],
   },
-  output: 'export', // Esto habilita la exportación estática
 };
 
 export default nextConfig;
