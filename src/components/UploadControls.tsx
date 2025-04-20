@@ -33,7 +33,9 @@ export default function UploadControls({ session, setRefreshTrigger }: any) {
         await axios.post(
           `${process.env.NEXT_PUBLIC_API_URL}/images/upload/${session.albumId}?access_key=${session.masterKey}`,
           formData,
-          { headers: { "Content-Type": "multipart/form-data" } }
+          { headers: { "Content-Type": "multipart/form-data",
+            'ngrok-skip-browser-warning': 'true',
+          } }
         );
         setRefreshTrigger((prev: number) => prev + 1); // Actualiza el trigger
       }
@@ -87,7 +89,9 @@ export default function UploadControls({ session, setRefreshTrigger }: any) {
           await axios.post(
             `${process.env.NEXT_PUBLIC_API_URL}/images/upload/${session.albumId}?access_key=${session.masterKey}`,
             formData,
-            { headers: { "Content-Type": "multipart/form-data" } }
+            { headers: { "Content-Type": "multipart/form-data",
+              'ngrok-skip-browser-warning': 'true',
+            } }
           );
           setRefreshTrigger((prev: number) => prev + 1); // Actualiza el trigger
         }}

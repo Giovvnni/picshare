@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         protocol: 'http',
         hostname: 'localhost',
       },
+      {
+        protocol: 'https', // Asegúrate de que sea 'http' para tu Raspberry Pi
+        hostname: 'bedbug-legal-usually.ngrok-free.app', // IP pública de tu Raspberry Pi
+      },
     ],
   },
   experimental: {

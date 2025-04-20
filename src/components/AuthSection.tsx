@@ -13,43 +13,42 @@ export default function AuthSection({
   setAlbumNameDisplay,
 }: any) {
   const createAlbum = async () => {
-    console.log("📦 Creando álbum con nombre:", albumName);
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/albums/create`, {
         album_name: albumName,
+        headers:{
+          'ngrok-skip-browser-warning': 'true',
+        },
       });
       const { album } = res.data;
-      console.log("✅ Álbum creado:", album);
+   
 
       localStorage.setItem("album_id", album._id);
       localStorage.setItem("master_key", album.master_key);
       localStorage.setItem("album_name", album.album_name);
 
       setSession({ albumId: album._id, masterKey: album.master_key, readonlyKey: null });
-      console.log("🧠 Sesión seteada (create):", {
-        albumId: album._id,
-        masterKey: album.master_key,
-        readonlyKey: null,
-      });
+      
 
       setAlbumNameDisplay(album.album_name);
-      console.log("🎨 Nombre de álbum mostrado:", album.album_name);
 
       setView("home");
-      console.log("🚀 Vista cambiada a 'home' (desde create)");
     } catch (error) {
       console.error("❌ Error al crear álbum:", error);
     }
   };
 
   const accessAlbum = async () => {
-    console.log("🔑 Accediendo a álbum con clave:", accessKey);
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/albums/verify_key?key=${accessKey}`
+        `${process.env.NEXT_PUBLIC_API_URL}/albums/verify_key?key=${accessKey}`,
+        {
+          headers:{
+            'ngrok-skip-browser-warning': 'true',
+          },
+        }
       );
 
-      console.log("✅ Respuesta de verificación:", res.data);
 
       localStorage.setItem("album_id", res.data.album_id);
       localStorage.setItem(
@@ -65,13 +64,10 @@ export default function AuthSection({
       };
 
       setSession(sessionData);
-      console.log("🧠 Sesión seteada (access):", sessionData);
 
       setAlbumNameDisplay(res.data.album_name);
-      console.log("🎨 Nombre de álbum mostrado:", res.data.album_name);
 
       setView("home");
-      console.log("🚀 Vista cambiada a 'home' (desde access)");
     } catch (err) {
       console.error("❌ Error al acceder al álbum:", err);
       alert("Clave incorrecta o no válida.");
@@ -84,7 +80,6 @@ export default function AuthSection({
       <div className="flex flex-col gap-4 items-center">
         <button
           onClick={() => {
-            console.log("🧭 Navegando a vista: create");
             setView("create");
           }}
           className="px-4 py-2 animate-heartbeat text-2xl font-pixelcute bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600"
@@ -93,7 +88,6 @@ export default function AuthSection({
         </button>
         <button
           onClick={() => {
-            console.log("🧭 Navegando a vista: access");
             setView("access");
           }}
           className="px-4 py-2 animate-heartbeat font-pixelcute text-2xl bg-green-500 text-white rounded-lg shadow hover:bg-green-600"
@@ -108,7 +102,6 @@ export default function AuthSection({
               placeholder="Name your album!"
               value={albumName}
               onChange={(e) => {
-                console.log("✏️ Cambiando nombre del álbum:", e.target.value);
                 setAlbumName(e.target.value);
               }}
             />
@@ -129,7 +122,6 @@ export default function AuthSection({
               placeholder="Enter your key"
               value={accessKey}
               onChange={(e) => {
-                console.log("🔐 Cambiando clave:", e.target.value);
                 setAccessKey(e.target.value);
               }}
             />
