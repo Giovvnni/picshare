@@ -66,9 +66,6 @@ export default function HomePage() {
     }
   }, [session, refreshTrigger]);
   
-  useEffect(() => {
-    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
-  }, []);
 
   return (
     <div
@@ -97,6 +94,7 @@ export default function HomePage() {
           images={images}
           setRefreshTrigger={setRefreshTrigger}
           albumNameDisplay={albumNameDisplay}
+          setAlbumNameDisplay={setAlbumNameDisplay}
           logout={() => {
             localStorage.clear();
             setSession({ albumId: null, masterKey: null, readonlyKey: null });

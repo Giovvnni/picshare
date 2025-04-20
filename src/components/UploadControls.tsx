@@ -53,7 +53,7 @@ export default function UploadControls({ session, setRefreshTrigger }: any) {
   }, [session.albumId, session.masterKey]);
 
   return (
-    <div className="flex justify-center gap-4 mb-4">
+    <div className="flex justify-center mt-4 gap-4 mb-4">
       <button
         className="px-4 py-2 font-pixelcute bg-purple-500 text-white rounded hover:bg-purple-600"
         onClick={() => {
@@ -62,7 +62,7 @@ export default function UploadControls({ session, setRefreshTrigger }: any) {
           });
         }}
       >
-        Copiar clave del álbum
+        Copy Album Key
       </button>
 
       <button
